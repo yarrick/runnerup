@@ -1,0 +1,60 @@
+
+runnerup (GH-601 transfer utility)
+
+http://code.kryo.se/runnerup/
+
+This file contains the reverse-engineered protocol description.
+
+Analyzed by Erik Ekman <yarrick@kryo.se> with a GH-601 version 1.15.
+
+The GH-601 communicates with 4800 baud.
+The checksum is xor of each byte after the header.
+
+===========================================
+Waypoints: 
+
+Send:
+02 	Header
+00 01 	Length = 1
+77 	Command
+76	Checksum
+
+Receive:
+Header (0x77)
+Length (16bit big endian)
+Name, 7 bytes, zero-terminated
+Type of icon
+Altitude (unsigned 16bit big endian)
+Latitude (signed 32bit big endian, divide by 100000 to get degrees, >0 = North)
+Longitude (signed 32bit big endian, divide by 100000 to get degrees, >0 = East)
+Checksum
+
+===========================================
+Training runs:
+
+Send first:
+02 	Header
+00 01 	Length
+80 	Command
+81	Checksum
+For next training run send
+02 	Header
+00 01	Length
+81	Command
+80	Checksum
+
+Reply format:
+Header (0x80)
+Length (16bit big endian)
+Start date of track (8bit year, add 2000, 8bit month, 8bit day)
+Start time of track (8bit hour, 8bit minute, 8bit second)
+Duration of track (32bit big endian, number of 1/10 seconds)
+Distance of track (32bit big endian, number of meters)
+Number of latlongs in this reply (16bit big endian, 0 if last reply) = X
+Counter of total latlongs sent (16bit big endian, zero-based, 0 if last reply)
+[
+Latitude (signed 32bit big endian, divide by 100000 to get degrees, >0 = North)
+Longitude (signed 32bit big endian, divide by 100000 to get degrees, >0 = East)
+] = X times
+Checksum
+

@@ -33,6 +33,25 @@ class Track:
 		coordstr = ' '.join(map(str, self.coords))
 		return "Track %s, %d meters, %d seconds, path: %s" % (self.date,
 			self.length, self.duration, coordstr)
+	
+	def getName(self):
+		return '  <name>Track from %s</name>' % self.date
+
+	def getDesc(self):
+		return '  <desc>Length %d meters</desc>' % self.length
+
+	def getComment(self):
+		return '  <cmt>Duration %d seconds</cmt>' % self.duration
+
+	def coordToGpxTrkseg(self, coord):
+		return '  <trkseg>\n    <trkpt %s></trkpt>\n  </trkseg>' % \
+			coord.toGPX()
+
+	def toGPX(self):
+		return '<trk>\n%s\n%s\n%s\n%s\n</trk>' % (self.getName(), 
+			self.getDesc(), self.getComment(), 
+			'\n'.join(map(self.coordToGpxTrkseg, 
+			self.coords)))
 
 class TrackReader:
 	cmd_get_tracks =      0x80

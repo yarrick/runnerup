@@ -17,22 +17,28 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 '''
 
-class Coordinate:
-	def __init__(self, rawlat, rawlong):
-		self.lat = rawlat / 100000.0
-		self.long = rawlong / 100000.0
+class GpxExport:
+	def __init__(self):
+		self.wplist = []
+		self.trklist = []
 	
-	def __str__(self):
-		if self.lat >= 0:
-			dirlat = 'N'
-		else:
-			dirlat = 'S'
-		if self.long >= 0:
-			dirlong = 'E'
-		else:
-			dirlong = 'W'
-		return "[%c %f, %c %f]" % (dirlat, abs(self.lat), 
-			dirlong, abs(self.long))
-	
+	def setWaypoints(self, wp):
+		self.wplist = wp
+
+	def setTracks(self, tr):
+		self.trklist = tr
+
 	def toGPX(self):
-		return 'lat="%f" lon="%f"' % (self.lat, self.long)
+		strs = [ '<?xml version="1.0" encoding="UTF-8"?>',
+		  '<gpx version="1.0"',
+		  '    creator="http://code.kryo.se/runnerup"',
+		  '    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"',
+		  '    xmlns="http://www.topografix.com/GPX/1/0"',
+		  '    xsi:schemaLocation="http://www.topografix.com/GPX/1/0',
+		  '        http://www.topografix.com/GPX/1/0/gpx.xsd">']
+
+		map(strs.append, map(lambda a: a.toGPX(), self.wplist))
+		map(strs.append, map(lambda a: a.toGPX(), self.trklist))
+
+		strs.append('</gpx>')
+		return '\n'.join(strs)

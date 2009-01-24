@@ -29,6 +29,10 @@ class Waypoint:
 	def __str__(self):
 		return "Waypoint \"%s\", alt %d m, %s" % (self.name, 
 			self.alt, self.coord)
+
+	def toGPX(self):
+		return '<wpt %s>\n  <name>%s</name>\n</wpt>' % \
+			(self.coord.toGPX(), self.name)
 	
 class BadDataLength:
 	pass

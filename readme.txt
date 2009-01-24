@@ -6,29 +6,30 @@ http://code.kryo.se/runnerup/
 
 How to install:
 
-1. Install Python (2.6 is known to work)
-2. Install pySerial
-3. Windows users must install pyWin32
-4. Done!
+1. Install the USB-serial driver (Prolific PL-2303)
+   Windows users: From the GH-601 CD or google it
+   Linux users: modules usbserial and pl2303
+2. Install Python (2.6 is known to work)
+3. Install pySerial
+4. Windows users must install pyWin32
+5. Done!
 
 
 How to use:
 
 1. On the GPS, go to CONFIGURATION, and then choose UPLOAD TO PC
 2. Connect the USB cable to the GPS and the computer
-3. Run python runnerup.py <PORT> <TYPE>
+3. Run python runnerup.py <PORT>
    where <PORT> is your com port, (Usually /dev/ttyUSB0 on Linux)
-   and <TYPE> is 'waypoint' or 'track' (waypoint means downloading
-   all waypoints, track means download all recorded tracks)
 4. GPS should say "Waypoint/Training Data Send O.K."
-5. All your waypoints/tracks should be printed on the screen
+5. All your waypoints/tracks should be printed on the screen in
+   GPX format
 
 
 Stuff left to do:
 - CSV output
 - KML/Google Earth output
 - HTML/Google Maps output
-- GPX (http://www.topografix.com/gpx.asp) output
 - Calculating avg. speed of a run
 
 

@@ -33,10 +33,10 @@ Stuff left to do:
 - Calculating avg. speed of a run
 
 
-Get the latest version with SVN at:
-http://svn.kryo.se/runnerup
-    
-    
+Get the latest version at:
+http://github.com/yarrick/runnerup
+
+
 runnerup - GH-601 transfer utility
 Copyright (C) 2009 Erik Ekman
 

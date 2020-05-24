@@ -31,11 +31,11 @@ class GH60xNotConnectedError:
 class GH60xSerial:
 	def __init__(self):
 		self.conn = None
-	
+
 	def __del__(self):
 		if self.conn != None:
 			self.conn.close()
-	
+
 	def connect(self, port, speed):
 		self.conn = serial.Serial(
 			port=port,
@@ -44,7 +44,7 @@ class GH60xSerial:
 
 	def checksum(self, data):
 		return reduce(lambda a, b: a ^ b, map(ord, data))
-	
+
 	def sendCommand(self, command):
 		if self.conn == None:
 			raise GH60xNotConnectedError()
@@ -72,7 +72,7 @@ class GH60xSerial:
 		if len(data) != length + 1:
 			raise GH60xDataError("Could not read all data")
 		print >> sys.stderr, "%d bytes" % length
-		given_chksum = ord(data[length])
+		given_chksum = ord(data[-1:])
 		chksum = self.checksum(header[1:])
 		data = data[:-1]
 		chksum ^= self.checksum(data)

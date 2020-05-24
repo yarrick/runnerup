@@ -21,7 +21,7 @@ class GpxExport:
 	def __init__(self):
 		self.wplist = []
 		self.trklist = []
-	
+
 	def setWaypoints(self, wp):
 		self.wplist = wp
 

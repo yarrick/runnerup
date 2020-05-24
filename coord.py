@@ -21,7 +21,7 @@ class Coordinate:
 	def __init__(self, rawlat, rawlong):
 		self.lat = rawlat / 100000.0
 		self.long = rawlong / 100000.0
-	
+
 	def __str__(self):
 		if self.lat >= 0:
 			dirlat = 'N'
@@ -31,8 +31,8 @@ class Coordinate:
 			dirlong = 'E'
 		else:
 			dirlong = 'W'
-		return "[%c %f, %c %f]" % (dirlat, abs(self.lat), 
+		return "[%c %f, %c %f]" % (dirlat, abs(self.lat),
 			dirlong, abs(self.long))
-	
+
 	def toGPX(self):
 		return 'lat="%f" lon="%f"' % (self.lat, self.long)

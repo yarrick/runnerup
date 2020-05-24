@@ -28,12 +28,12 @@ class Track:
 		self.length = length
 		self.duration = duration / 10.0
 		self.coords = coords
-	
+
 	def __str__(self):
 		coordstr = ' '.join(map(str, self.coords))
 		return "Track %s, %d meters, %d seconds, path: %s" % (self.date,
 			self.length, self.duration, coordstr)
-	
+
 	def getName(self):
 		return '  <name>Track from %s</name>' % self.date
 
@@ -48,15 +48,14 @@ class Track:
 			coord.toGPX()
 
 	def toGPX(self):
-		return '<trk>\n%s\n%s\n%s\n%s\n</trk>' % (self.getName(), 
-			self.getDesc(), self.getComment(), 
-			'\n'.join(map(self.coordToGpxTrkseg, 
-			self.coords)))
+		return '<trk>\n%s\n%s\n%s\n%s\n</trk>' % (self.getName(),
+			self.getDesc(), self.getComment(),
+			'\n'.join(map(self.coordToGpxTrkseg, self.coords)))
 
 class TrackReader:
 	cmd_get_tracks =      0x80
 	cmd_get_more_tracks = 0x81
-	empty_msg_length = 18
+	empty_msg_length =    18
 
 	def __init__(self, comm):
 		self.comm = comm

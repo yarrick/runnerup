@@ -11,7 +11,7 @@ The GH-601 communicates with 4800 baud.
 The checksum is xor of each byte after the header.
 
 ===========================================
-Waypoints: 
+Waypoints:
 
 Send:
 02 	Header

@@ -1,7 +1,7 @@
 
 Readme file for runnerup (GH-601 transfer utility)
 
-http://code.kryo.se/runnerup/
+https://code.kryo.se/runnerup/
 
 
 How to install:
@@ -34,7 +34,7 @@ Stuff left to do:
 
 
 Get the latest version at:
-http://github.com/yarrick/runnerup
+https://github.com/yarrick/runnerup
 
 
 runnerup - GH-601 transfer utility

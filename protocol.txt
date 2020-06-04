@@ -1,7 +1,7 @@
 
 runnerup (GH-601 transfer utility)
 
-http://code.kryo.se/runnerup/
+https://code.kryo.se/runnerup/
 
 This file contains the reverse-engineered protocol description.
 
